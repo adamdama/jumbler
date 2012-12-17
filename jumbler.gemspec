@@ -19,5 +19,6 @@ Gem::Specification.new do |gemspec|
   
   gemspec.add_dependency "version", "~> 0.6.0"
   
+  gemspec.add_development_dependency "rspec"
   gemspec.add_development_dependency "bundler"
 end
