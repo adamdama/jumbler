@@ -5,7 +5,7 @@
 Gem::Specification.new do |gemspec|
   gemspec.name        = 'jumbler'
   gemspec.version     = '0.0.0'
-  gemspec.date = Date.today
+  gemspec.date        = Date.today
   gemspec.summary     = "Jumbler"
   gemspec.description = "Jumbler"
   gemspec.authors     = ["Adam Cox"]
