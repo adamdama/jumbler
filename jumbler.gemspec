@@ -1,22 +1,23 @@
-#
-# Gemspec for jumbler
-#
+# -*- encoding: utf-8 -*-
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'jumbler/version'
 
 Gem::Specification.new do |gemspec|
-  gemspec.name        = 'jumbler'
-  gemspec.version     = '0.0.1'
+  gemspec.name        = "jumbler"
+  gemspec.version     = Jumbler::VERSION
   gemspec.date        = Date.today
   gemspec.summary     = "Jumbler JS Combiner"
   gemspec.description = "Uses Googles Closure Compiler to combine JS files into a single, better formed javascript"
   gemspec.authors     = ["Adam Cox"]
-  gemspec.email       = 'adamdama@hotmail.com'
-  gemspec.files       = ["lib/jumbler.rb"]
-  gemspec.homepage    = 'https://github.com/adamdama/jumbler'
-  gemspec.add_dependency 'listen', '~> 0.6.0'
-  gemspec.add_dependency 'wdm','~> 0.0.3'
-  gemspec.executables << 'jumbler'
+  gemspec.email       = "adamdama@hotmail.com"
+
+  gemspec.files         = `git ls-files`.split($/)
+  gemspec.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
+  gemspec.test_files    = gem.files.grep(%r{^(test|spec|features)/})
+  gemspec.require_paths = ["lib"]
   
-  gemspec.files = %w(README.md)
-  gemspec.files += Dir.glob("bin/*")
-  gemspec.files += Dir.glob("lib/gcc/*")
+  gemspec.add_dependency "version", "~> 0.6.0"
+  
+  gemspec.add_development_dependency "bundler"
 end
