@@ -26,7 +26,8 @@ class Jumbler
     @output_file = File.join(@watch_dir, 'jumbled.min.js')
     # get all js files to be comiled
     @js_file_paths = self.get_js @watch_dir
-
+    
+    puts 'Jumbler is now looking for changes'
     # listen to the specified folder for changes to js files
     @listener = Listen.to(@watch_dir, :relative_paths => true, :filter => /\.js$/, :ignore => %r{ignored/path/}) do |modified, added, removed|
       puts 'changes detected'
@@ -99,21 +100,3 @@ class Jumbler
     Dir.chdir(@current_dir)
   end
 end
-
-# create the jumbler
-j = Jumbler.new ARGV
-
-=begin
-def help
-print "
-Usage: #{__FILE__} watch --in_folder --out_folder
-"
-end
-
-if ARGV.empty?
-help
-exit
-else
-j = Jumbler.new ARGV
-end
-=end
