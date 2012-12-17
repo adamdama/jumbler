@@ -14,4 +14,5 @@ Gem::Specification.new do |gemspec|
   gemspec.homepage    = 'https://github.com/adamdama/jumbler'
   gemspec.add_dependency 'listen', '~> 0.6.0'
   gemspec.add_dependency 'wdm','~> 0.0.3'
+  gemspec.executables       << 'jumbler'
 end
