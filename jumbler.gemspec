@@ -13,8 +13,8 @@ Gem::Specification.new do |gemspec|
   gemspec.email       = "adamdama@hotmail.com"
 
   gemspec.files         = `git ls-files`.split($/)
-  gemspec.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
-  gemspec.test_files    = gem.files.grep(%r{^(test|spec|features)/})
+  gemspec.executables   = gemspec.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
+  gemspec.test_files    = gemspec.files.grep(%r{^(test|spec|features)/})
   gemspec.require_paths = ["lib"]
   
   gemspec.add_dependency "version", "~> 0.6.0"
