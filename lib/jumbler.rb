@@ -7,43 +7,58 @@
 #
 # Uses Listen library
 #
+# Requires java
+# Requires java to be add to PATH
+#
 
 require 'listen'
 require 'find'
+#require 'debugger'
 
 class Jumbler
-  @ds = File::SEPARATOR
-  
   # initialize jumbler
   def initialize args
-    # @args = args
+    @gcc_path = File.join(File.dirname(__FILE__),'gcc','compiler.jar')
+    @java_exec = 'java'
+
     @current_dir = Dir.pwd
     @watch_dir = @current_dir
+    @output_file = File.join(@watch_dir, 'jumbled.min.js')
     # get all js files to be comiled
     @js_file_paths = self.get_js @watch_dir
 
     # listen to the specified folder for changes to js files
     @listener = Listen.to(@watch_dir, :relative_paths => true, :filter => /\.js$/, :ignore => %r{ignored/path/}) do |modified, added, removed|
-      if(added.length > 0)
-        # if a new file is added we need to add it to the array
-        added.collect{|item|
-          @js_file_paths << @watch_dir + File::SEPARATOR + item
-        }
-      end
+      puts 'changes detected'
       
-      if(removed.length > 0)
-        # if a file is removed we need to remove it from the array
-        removed.collect{|item|
-          @js_file_paths.any? {|path|
-            if(path == @watch_dir + File::SEPARATOR + item)
-              @js_file_paths.delete(path)
-            end
-           } 
-        }
-      end
+      all_changes = modified + added + removed
       
-      # compile the new js file
-      self.jumble
+      puts all_changes
+      # stop if the change was the compiled file
+      unless(all_changes.length == 1 && "#{File.join(@watch_dir, all_changes[0])}" == @output_file)
+      
+        puts 'recompilation needed'
+        if(added.length > 0)
+          # if a new file is added we need to add it to the array
+          added.each{|item|
+            @js_file_paths << File.join(@watch_dir, item)
+          }
+        end
+  
+        if(removed.length > 0)
+          # if a file is removed we need to remove it from the array
+          removed.each{|item|
+            @js_file_paths.any? {|path|
+              if(path == File.join(@watch_dir, item))
+                @js_file_paths.delete(path)
+              end
+             }
+          }
+        end
+  
+        # compile the new js file
+        self.jumble
+      end
     end
   end
 
@@ -60,7 +75,28 @@ class Jumbler
 
   # creates the command to be used to run the closure compiler
   def jumble
-    puts @js_file_paths
+    command = ''
+
+    @js_file_paths.each {|item|
+      command += '--js "' + item + '" '
+    }
+
+    command += ' --js_output_file "' + @output_file + '"'
+    
+    self.exjar command
+  end
+
+  # executes the closure compiler
+  def exjar args
+    # move to the compilers directory
+    Dir.chdir("#{File.dirname(@gcc_path)}") do
+      # execute the compiler
+      retResult  = system("#{@java_exec} -jar #{File.basename(@gcc_path)} #{args}")
+      puts retResult
+    end #chdir
+    
+    # move back to original directory
+    Dir.chdir(@current_dir)
   end
 end
 
