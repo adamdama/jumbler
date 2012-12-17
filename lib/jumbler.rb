@@ -3,7 +3,7 @@
 # and passing them to Googles closure compiler upon modification
 # resulting in a minified file in a specified directory
 #
-# Inspired by Compass and Google's Closure Compiler
+# Inspired by Compass and Google"s Closure Compiler
 #
 # Uses Listen library
 #
@@ -16,26 +16,28 @@ require "rubygems"
 require "bundler/setup"
 
 # application requirements
-require 'listen'
-require 'find'
-#require 'debugger'
+require "listen"
+require "find"
+#require "debugger"
+
+require "jumbler/version"
 
 class Jumbler
   # initialize jumbler
   def initialize args
-    @gcc_path = File.join(File.dirname(__FILE__),'gcc','compiler.jar')
-    @java_exec = 'java'
+    @gcc_path = File.join(File.dirname(__FILE__),"gcc","compiler.jar")
+    @java_exec = "java"
 
     @current_dir = Dir.pwd
     @watch_dir = @current_dir
-    @output_file = File.join(@watch_dir, 'jumbled.min.js')
+    @output_file = File.join(@watch_dir, "jumbled.min.js")
     # get all js files to be comiled
     @js_file_paths = self.get_js @watch_dir
     
-    puts 'Jumbler is now looking for changes'
+    puts "Jumbler is now looking for changes"
     # listen to the specified folder for changes to js files
     @listener = Listen.to(@watch_dir, :relative_paths => true, :filter => /\.js$/, :ignore => %r{ignored/path/}) do |modified, added, removed|
-      puts 'changes detected'
+      puts "changes detected"
       
       all_changes = modified + added + removed
       
@@ -43,7 +45,7 @@ class Jumbler
       # stop if the change was the compiled file
       unless(all_changes.length == 1 && "#{File.join(@watch_dir, all_changes[0])}" == @output_file)
       
-        puts 'recompilation needed'
+        puts "recompilation needed"
         if(added.length > 0)
           # if a new file is added we need to add it to the array
           added.each{|item|
@@ -81,7 +83,7 @@ class Jumbler
 
   # creates the command to be used to run the closure compiler
   def jumble
-    command = ''
+    command = ""
 
     @js_file_paths.each {|item|
       command += '--js "' + item + '" '
