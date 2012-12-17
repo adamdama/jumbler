@@ -16,6 +16,7 @@ require "rubygems"
 require "bundler/setup"
 
 # application requirements
+Bundler.require(:default, :development)
 require "listen"
 require "find"
 #require "debugger"
