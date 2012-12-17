@@ -11,13 +11,14 @@ Gem::Specification.new do |gemspec|
   gemspec.description = "Uses Googles Closure Compiler to combine JS files into a single, better formed javascript"
   gemspec.authors     = ["Adam Cox"]
   gemspec.email       = "adamdama@hotmail.com"
+  gemspec.homepage    = "https://github.com/adamdama/jumbler"
 
   gemspec.files         = `git ls-files`.split($/)
   gemspec.executables   = gemspec.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gemspec.test_files    = gemspec.files.grep(%r{^(test|spec|features)/})
   gemspec.require_paths = ["lib"]
   
-  gemspec.add_dependency "version", "~> 0.6.0"
+  gemspec.add_dependency "listen", "~> 0.6.0"
   
   gemspec.add_development_dependency "rspec"
   gemspec.add_development_dependency "bundler"
