@@ -1,7 +1,3 @@
-## 0.0.2
-
-- Add cross platform support
-
 ## 0.0.3
 
 - Add ignore list
