@@ -3,7 +3,7 @@
 require 'jumbler'
 
 # create the jumbler
-j = Jumbler.new ARGV
+Jumbler.new ARGV
 
 =begin
 def help
