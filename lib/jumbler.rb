@@ -11,15 +11,9 @@
 # Requires java to be add to PATH
 #
 
-# require bundler
-require "rubygems"
-require "bundler/setup"
-
 # application requirements
-Bundler.require(:default, :development)
 require "listen"
 require "find"
-#require "debugger"
 
 require "jumbler/version"
 
