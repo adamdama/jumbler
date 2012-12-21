@@ -14,7 +14,6 @@ Inspired by Compass and Google's Closure Compiler
 ## Requirements
 
 * Java
-* java must be accessible from command line i.e. added to PATH
 
 ## Install
 
