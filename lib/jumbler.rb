@@ -21,7 +21,7 @@ class Jumbler
   # initialize jumbler
   def initialize args    
     @gcc_path = File.join(File.dirname(__FILE__),"gcc","compiler.jar")
-    @java_exec = "java"
+    @java_exec = args.java_exec
 
     @current_dir = Dir.pwd
     @watch_dir = args.watch_folder
