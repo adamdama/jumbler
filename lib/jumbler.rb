@@ -19,17 +19,18 @@ require "jumbler/version"
 
 class Jumbler
   # initialize jumbler
-  def initialize args
+  def initialize args    
     @gcc_path = File.join(File.dirname(__FILE__),"gcc","compiler.jar")
     @java_exec = "java"
 
     @current_dir = Dir.pwd
-    @watch_dir = @current_dir
-    @output_file = File.join(@watch_dir, "jumbled.min.js")
+    @watch_dir = args.watch_folder
+    @output_file = args.output_file
+    
     # get all js files to be comiled
     @js_file_paths = self.get_js @watch_dir
     
-    puts "Jumbler is now looking for changes"
+    puts "jumbler is now looking for changes"
     # listen to the specified folder for changes to js files
     @listener = Listen.to(@watch_dir, :relative_paths => true, :filter => /\.js$/, :ignore => %r{ignored/path/}) do |modified, added, removed|
       puts "changes detected"
