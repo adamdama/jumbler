@@ -3,7 +3,7 @@
 - Added Rake
 - Added Bundle
 - Added version file
-- Corrected dependencies for corss platform installation
+- ~~Corrected dependencies for corss platform installation~~
 
 ## 0.0.1 - December 17, 2012
 
