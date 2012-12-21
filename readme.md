@@ -6,7 +6,7 @@ resulting in a minified, better formed javascript file in a specified directory
 
 Inspired by Compass and Google's Closure Compiler
 
-##Uses
+## Uses
 
 * [Listen](http://github.com/guard/listen)
 * [Google Closure Compiler](http://google.com/closure/compiler)
@@ -14,7 +14,6 @@ Inspired by Compass and Google's Closure Compiler
 ## Requirements
 
 * Java
-* java must be accessible from command line i.e. added to PATH
 
 ## Install
 
