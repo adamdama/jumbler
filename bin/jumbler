@@ -25,6 +25,7 @@ Jumbler is a command line application that watches folders of javascript for cha
 Usage:
        jumbler [options]
 where [options] are:
+
 EOS
 
   opt :watch_folder, "The folder to watch.",

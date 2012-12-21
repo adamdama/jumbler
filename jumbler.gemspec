@@ -22,7 +22,7 @@ Gem::Specification.new do |gemspec|
   
   gemspec.add_dependency "listen", "~> 0.6.0"
   gemspec.add_dependency "rake"
-  gempsec.add_dependency "trollop"
+  gemspec.add_dependency "trollop"
   
   # OS specific listen dependencies
   gemspec.add_dependency 'rb-kqueue', '~> 0.2' if RbConfig::CONFIG['target_os'] =~ /freebsd/i
