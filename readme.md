@@ -2,7 +2,7 @@
 
 Jumbler is an application used to watch folders containg javascript
 and pass them to Googles closure compiler upon modification
-resulting in a minified file in a specified directory
+resulting in a minified, better formed javascript file in a specified directory
 
 Inspired by Compass and Google's Closure Compiler
 

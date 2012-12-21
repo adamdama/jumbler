@@ -10,7 +10,11 @@ Gem::Specification.new do |gemspec|
   gemspec.version     = Jumbler::VERSION
   gemspec.date        = Date.today
   gemspec.summary     = "Jumbler JS Combiner"
-  gemspec.description = "Uses Googles Closure Compiler to combine JS files into a single, better formed javascript"
+  gemspec.description = "Jumbler is an application used to watch folders containg javascript
+and pass them to Googles closure compiler upon modification
+resulting in a minified, better formed javascript file in a specified directory
+
+Inspired by Compass and Google's Closure Compiler"
   gemspec.authors     = ["Adam Cox"]
   gemspec.email       = "adamdama@hotmail.com"
   gemspec.homepage    = "https://github.com/adamdama/jumbler"
