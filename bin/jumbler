@@ -32,7 +32,7 @@ EOS
         :default => Dir.pwd,
         :type => String
   opt :output_file, "File name and path for the output file.",
-        :default => File.join(Dir.pwd, "jumbled.min.js"),
+        :default => "./jumbled.min.js",
         :type => String
   opt :java_exec,"Path to java executable. Defaults expects it to be added to your PATH",
         :default => "java"
