@@ -1,21 +1,42 @@
 #!/usr/bin/env ruby
 
+# include option parser
+require 'trollop'
+# require jumbler
 require 'jumbler'
+require 'version'
+
+# define options
+
+# add options to parser
+opts = Trollop::options do
+    
+    # folder to watch
+    # optional
+    # defaults to current directory
+    
+    # output file
+    # optional
+    # defaults to <watch_folder>/jumbled.min.js
+  version "jumbler #{Jumbler::VERSION} (c) 2012 Adam Cox"
+  banner <<-EOS
+Jumbler is a command line application that watches folders of javascript for changes and then passes them to Google Closure Compiler for them to be recompiled into a single file of well formed javascript.
+
+Usage:
+       jumbler [options]
+where [options] are:
+
+EOS
+
+  opt :watch_folder, "The folder to watch.",
+        :default => Dir.pwd,
+        :type => String
+  opt :output_file, "File name and path for the output file.",
+        :default => File.join(Dir.pwd, "jumbled.min.js"),
+        :type => String
+  opt :java_exec,"Path to java executable. Defaults expects it to be added to your PATH",
+        :default => "java"
+end
 
 # create the jumbler
-Jumbler.new ARGV
-
-=begin
-def help
-print "
-Usage: #{__FILE__} watch --in_folder --out_folder
-"
-end
-
-if ARGV.empty?
-help
-exit
-else
-j = Jumbler.new ARGV
-end
-=end
+Jumbler.new opts

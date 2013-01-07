@@ -26,6 +26,7 @@ Inspired by Compass and Google's Closure Compiler"
   
   gemspec.add_dependency "listen", "~> 0.6.0"
   gemspec.add_dependency "rake"
+  gemspec.add_dependency "trollop"
   
   # OS specific listen dependencies
   gemspec.add_dependency 'rb-kqueue', '~> 0.2' if RbConfig::CONFIG['target_os'] =~ /freebsd/i
